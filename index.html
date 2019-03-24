@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>App Shell</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM2.5</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery.corner.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script><script src="/lib/jquery.ui.touch-punch.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PM2.5">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <!-- Windows-->
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+
+</head>
+
+<body>
+<header class="header">
+    <h1 class="header__title">一周PM2.5预测</h1>
+</header>
+
+<img border=0 id=image src=images/initial.png/>
+
+<script>
+    var myDate=new Date()
+    var mon=(myDate.getUTCMonth()+1).toString()
+    var count = 1
+    if (count<10){count+='0'}
+    if (myDate.getUTCMonth()<9)
+    {
+        mon = 0+mon
+    }
+    var YMD = (myDate.getUTCFullYear()-2000).toString()+mon+myDate.getUTCDate().toString()
+    var nowValue = parseInt(myDate.getHours()/3+9)
+    document.write(myDate.getUTCHours())
+    nowValue = nowValue < 10 ?"0"+nowValue:nowValue
+    document.write(nowValue)
+    document.getElementById("image").src="https://pm25.jp/yosoku/parts/casu/"+YMD+"/"+nowValue.toString() +".png";
+</script>
+<table>
+    <tr>
+        <Td><input id=preButton type=button class=button value="前"></td>
+        <Td><div id="slider"></div></Td>
+        <td><input id=nextButton type=button class=button value="后"></td>
+    </tr>
+</table>
+<input class="button" id=pauseButton type=button value="停止播放">
+<input class="button" id=playButton type=button value="播放动画">
+<div style="font-size:9pt;color:#333;padding:10px">
+    <input type=radio id=speed_0 name=speed value="low"><label for=speed_0>慢</label>
+    <input type=radio id=speed_1 name=speed checked value="normal"><label for=speed_1>普通</label>
+    <input type=radio id=speed_2 name=speed value="high"><label for=speed_2>快</label>
+</div>
+<script  type="text/javascript"  charset="utf-8">
+    (function(w,d,t,f){  w[f]=w[f]||function(c,k,n){s=w[f],k=s['k']=(s['k']||(k?('&k='+k):''));s['c']=
+        c=(c  instanceof  Array)?c:[c];s['n']=n=n||0;L=d.createElement(t),e=d.getElementsByTagName(t)[0];
+        L.async=1;L.src='//feed.aqicn.org/feed/'+(c[n].city)+'/'+(c[n].lang||'')+'/feed.v1.js?n='+n+k;
+        e.parentNode.insertBefore(L,e);  };  })(  window,document,'script','_aqiFeed'  );
+</script>
+<span  id="city-aqi-container"></span>
+
+<script  type="text/javascript"  charset="utf-8">
+    _aqiFeed({  container:"city-aqi-container",  city:"beijing"  });
+</script>
+<main class="main">
+    ...
+</main>
+
+
+
+
+
+
+<div class="loader">
+    <!-- Show a spinner or placeholders for content -->
+</div>
+
+<script src="scripts/app.js" async></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+</script>
+</body>
+</html>
