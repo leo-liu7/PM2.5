@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>PM2.5</title>
@@ -42,9 +42,8 @@
     }
     var YMD = (myDate.getUTCFullYear()-2000).toString()+mon+myDate.getUTCDate().toString()
     var nowValue = parseInt(myDate.getHours()/3+9)
-    document.write(myDate.getUTCHours())
+    //document.write(myDate.getUTCHours())
     nowValue = nowValue < 10 ?"0"+nowValue:nowValue
-    document.write(nowValue)
     document.getElementById("image").src="https://pm25.jp/yosoku/parts/casu/"+YMD+"/"+nowValue.toString() +".png";
 </script>
 <table>
@@ -70,12 +69,11 @@
 <span  id="city-aqi-container"></span>
 
 <script  type="text/javascript"  charset="utf-8">
-    _aqiFeed({  container:"city-aqi-container",  city:"beijing"  });
-</script>
-<main class="main">
-    ...
-</main>
+    _aqiFeed({
+        display:"%cityname  AQI  is  %aqi<br><small>on  %date</small>",
+        container:"city-aqi-container",  city:"haerbin"  });
 
+</script>
 
 
 
@@ -84,6 +82,7 @@
 <div class="loader">
     <!-- Show a spinner or placeholders for content -->
 </div>
+
 
 <script src="scripts/app.js" async></script>
 <script>
