@@ -34,15 +34,17 @@
 <script>
     var myDate=new Date()
     var mon=(myDate.getUTCMonth()+1).toString()
+    var day=(myDate.getUTCDate()).toString()
     var count = 1
     if (count<10){count+='0'}
     if (myDate.getUTCMonth()<9)
     {
         mon = 0+mon
+        day = 0+day
     }
-    var YMD = (myDate.getUTCFullYear()-2000).toString()+mon+myDate.getUTCDate().toString()
+    var YMD = (myDate.getUTCFullYear()-2000).toString()+mon+day
     var nowValue = parseInt(myDate.getHours()/3+9)
-    //document.write(myDate.getUTCHours())
+    //document.write(myDate.getUTCDate())
     nowValue = nowValue < 10 ?"0"+nowValue:nowValue
     document.getElementById("image").src="https://pm25.jp/yosoku/parts/casu/"+YMD+"/"+nowValue.toString() +".png";
 </script>
@@ -72,7 +74,6 @@
     _aqiFeed({
         display:"%cityname  AQI  is  %aqi<br><small>on  %date</small>",
         container:"city-aqi-container",  city:"haerbin"  });
-
 </script>
 <script src="scripts/app.js" async></script>
 <script>
