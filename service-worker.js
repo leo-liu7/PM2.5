@@ -6,7 +6,7 @@ var filesToCache = [
     '/index.html',
     '/styles/styles.css',
     '/scripts/app.js',
-    'images/initial.png'
+    'images/initial.png',
     '/aqi.html'
 
 ];
