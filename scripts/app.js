@@ -108,8 +108,6 @@ function setTimer(){
 function toZero(n){
     return n < 10 ? "0"+n : n;
 }
-
-
 // TODO add service worker code here
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
@@ -123,3 +121,4 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+app.se

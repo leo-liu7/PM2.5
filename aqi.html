@@ -1,50 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>PM2.5</title>
     <meta charset="utf-8">
-    <title>PM2.5</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM2.5</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/lib/jquery.corner.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script><script src="/lib/jquery.ui.touch-punch.min.js"></script>
-    <link rel="manifest" href="/manifest.json">
-    <!-- Add to home screen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="PM2.5">
-    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
-    <!-- Windows-->
-    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <script src='scripts/jquery-1.7.1.min.js'></script>
+    <script src="scripts/animation.js" ></script>
+    <style>
+        table.result {
+            width: 100%;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        table.result td:nth-child(n+2) {
+            text-align: center;
+        }
+        table.result tr:hover {
+            background-color: yellow;
+        }
+        h2 {
+            margin-bottom: 0;
+        }
+        input {
+            width: 100%;
+            font-size: 20px;
+            font-family: inherit;;
+            margin-bottom: 8px;
+        }
+
+        /* CSS Spinner-  https://github.com/webkul/csspin */
+        .cp-spinner{width:48px;height:48px;display:inline-block;box-sizing:border-box;position:relative}.cp-meter{border-radius:50%;border-top:solid 6px #0fd6ff;border-right:solid 6px #0fd6ff;border-bottom:solid 6px #0fd6ff;border-left:solid 6px #0fd6ff;width:48px;height:48px;display:inline-block;box-sizing:border-box}.cp-meter:before{border-radius:3px;content:" ";width:6px;height:12px;display:inline-block;box-sizing:border-box;background-color:#0fd6ff;position:absolute;top:5px;left:16px;transform-origin:center bottom;animation:cp-meter-animate-before 1s linear infinite}@keyframes cp-meter-animate-before{0%{transform:rotate(-45deg)}100%{transform:rotate(315deg)}}
+
+    </style>
 </head>
 <body>
 
-
-<div  id='map'  style='height:380px;'  />
-<link  rel="stylesheet"  href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"  />
-<script  src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-
 <script>
-    var  OSM_URL  =  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var  OSM_ATTRIB  =  '&copy;  <a  href="http://openstreetmap.org/copyright">OpenStreetMap</a>  contributors';
-    var  osmLayer  =  L.tileLayer(OSM_URL,  {attribution:  OSM_ATTRIB});
+    function geoFindMe() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log(position.coords);
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                init(lat,lng,"#result")
+            })
+        }
+        else {
+            console.info("geolocation is not supported in this environment");
+        }
 
-    var  WAQI_URL    =  "https://tiles.waqi.info/tiles/usepa-aqi/{z}/{x}/{y}.png?token=_TOKEN_ID_";
-    var  WAQI_ATTR  =  'Air  Quality  Tiles  &copy;  <a  href="http://waqi.info">waqi.info</a>';
-    var  waqiLayer  =  L.tileLayer(WAQI_URL,  {attribution:  WAQI_ATTR});
-
-    var  map  =  L.map('map').setView([51.505,  -0.09],  11);
-    map.addLayer(osmLayer).addLayer(waqiLayer);
+    }
 </script>
+
+
+<p><button onclick="geoFindMe()">Get location</button></p>
+<div id='result' style='min-height: 300px'></div>
 <footer>
     <a href="index.html" class="active"> A </a>
     <a href="aqi.html"> AQI </a>
 </footer>
-<script src="scripts/app.js" async></script>
 </body>
 </html>
