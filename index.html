@@ -12,6 +12,8 @@
     <script type="text/javascript" src="/lib/jquery.corner.js" charset="utf-8"></script>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script><script src="/lib/jquery.ui.touch-punch.min.js"></script>
+
+
     <link rel="manifest" href="/manifest.json">
     <!-- Add to home screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +31,7 @@
 <div class="map_div" align="center">
     <img border=0 id=image src=images/initial.png/>
     <table >
-        <tr align="center">
+        <tr >
             <Td><input id=preButton type=button class=button value="前"></td>
             <Td><div id="slider"></div></Td>
             <td><input id=nextButton type=button class=button value="后"></td>
@@ -37,7 +39,7 @@
     </table>
     <input class="button" id=pauseButton type=button value="停止播放">
     <input class="button" id=playButton type=button value="播放动画">
-    <div style="font-size:9pt;color:#333;padding:10px">
+    <div style="font-size:9pt;color:#333;padding:6px">
         <input type=radio id=speed_0 name=speed value="low"><label for=speed_0>慢</label>
         <input type=radio id=speed_1 name=speed checked value="normal"><label for=speed_1>普通</label>
         <input type=radio id=speed_2 name=speed value="high"><label for=speed_2>快</label>
