@@ -7,7 +7,7 @@ var filesToCache = [
     '/styles/styles.css',
     '/scripts/app.js',
     'images/initial.png',
-    '/aqi.html'
+    '/aqi.html',
 
 ];
 

@@ -28,8 +28,24 @@
 <header class="header">
     <h1 class="header__title">一周PM2.5预测</h1>
 </header>
+<div class="map_div" align="center">
+    <img border=0 id=image src=images/initial.png/>
+    <table>
+        <tr>
+            <Td><input id=preButton type=button class=button value="前"></td>
+            <Td><div id="slider"></div></Td>
+            <td><input id=nextButton type=button class=button value="后"></td>
+        </tr>
+    </table>
+    <input class="button" id=pauseButton type=button value="停止播放">
+    <input class="button" id=playButton type=button value="播放动画">
+    <div style="font-size:9pt;color:#333;padding:10px">
+        <input type=radio id=speed_0 name=speed value="low"><label for=speed_0>慢</label>
+        <input type=radio id=speed_1 name=speed checked value="normal"><label for=speed_1>普通</label>
+        <input type=radio id=speed_2 name=speed value="high"><label for=speed_2>快</label>
+    </div>
+</div>
 
-<img border=0 id=image src=images/initial.png/>
 
 <script>
     var myDate=new Date()
@@ -48,20 +64,7 @@
     nowValue = nowValue < 10 ?"0"+nowValue:nowValue
     document.getElementById("image").src="https://pm25.jp/yosoku/parts/casu/"+YMD+"/"+nowValue.toString() +".png";
 </script>
-<table>
-    <tr>
-        <Td><input id=preButton type=button class=button value="前"></td>
-        <Td><div id="slider"></div></Td>
-        <td><input id=nextButton type=button class=button value="后"></td>
-    </tr>
-</table>
-<input class="button" id=pauseButton type=button value="停止播放">
-<input class="button" id=playButton type=button value="播放动画">
-<div style="font-size:9pt;color:#333;padding:10px">
-    <input type=radio id=speed_0 name=speed value="low"><label for=speed_0>慢</label>
-    <input type=radio id=speed_1 name=speed checked value="normal"><label for=speed_1>普通</label>
-    <input type=radio id=speed_2 name=speed value="high"><label for=speed_2>快</label>
-</div>
+
 <footer>
     <a href="index.html" class="active"> A </a>
     <a href="aqi.html"> AQI </a>
@@ -78,5 +81,6 @@
         });
     }
 </script>
+
 </body>
 </html>
