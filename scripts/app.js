@@ -117,7 +117,7 @@ function init( latitude, longitude, outputId ) {
 function showStation(lat,lng, output) {
     output.html("<h2>Pollutants & Weather conditions:</h2>")
     output.append($("<div/>").html("Loading..."))
-    output.append($("<div/>").addClass("cp-spinner cp-meter"))
+
 
     $.getJSON("//api.waqi.info/feed/geo:"+lat+";"+lng+"/?token=20a84400e93585c059c5ffa3c8b047f1acd93edb",function(result){
 
