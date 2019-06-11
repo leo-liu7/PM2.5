@@ -37,7 +37,8 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
     console.log('[Service Worker] Fetch', e.request.url);
     var dataUrl = 'https://pm25.jp/m/';
-    if (e.request.url.indexOf(dataUrl) > -1) {
+    var aqiUrl = ' https://api.waqi.info/feed/'
+    if (e.request.url.indexOf(dataUrl) > -1||e.request.url.indexOf(aqiUrl) > -1) {
         e.respondWith(
             caches.open(dataCacheName).then(function(cache) {
                 return fetch(e.request).then(function(response){
